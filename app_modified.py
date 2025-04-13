@@ -12,7 +12,7 @@ st.title("📥 Saisie automatique des factures PDF avec OCR")
 st.markdown("Charge une facture PDF, extrait les données clés grâce à l'API Mindee, valide et exporte en écriture comptable Excel.")
 
 # Récupérer la clé API de Mindee (que tu auras récupérée sur le site de Mindee)
-api_key = '6daac45d567a2e0c4b36af0a7b4e25cc'  # Remplacer par ta clé API Mindee
+api_key = 'b8626ea4fbde22f6dc8ecb6ba9fd3058'  # Remplacer par ta clé API Mindee
 
 # Upload du fichier
 uploaded_file = st.file_uploader("Dépose ta facture PDF ici", type="pdf")
