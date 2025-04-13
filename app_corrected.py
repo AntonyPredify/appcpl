@@ -11,16 +11,16 @@ st.set_page_config(page_title="Saisie Factures Auto", layout="centered")
 st.title("📥 Saisie automatique des factures PDF avec OCR")
 st.markdown("Charge une facture PDF, extrait les données clés grâce à l'API Mindee, valide et exporte en écriture comptable Excel.")
 
-# Récupérer la clé API de Mindee (déjà intégrée)
-api_key = 'ad96a927d1867171fdd99f520ee2bd97'  # Ta clé API Mindee
+# Récupérer la clé API de Mindee (que tu auras récupérée sur le site de Mindee)
+api_key = 'TON_API_KEY'  # Remplacer par ta clé API Mindee
 
 # Upload du fichier
 uploaded_file = st.file_uploader("Dépose ta facture PDF ici", type="pdf")
 
 def ocr_mindee(pdf_file):
-    url = "https://api.mindee.net/v1/products/receipt/ocr/v1/predict"  # URL corrigée
+    url = "https://api.mindee.net/v1/products/mindee/invoices/v4/predict"
     headers = {
-        'Authorization': f'Token {api_key}'  # Format corrigé de l'Authorization header
+        'Authorization': f'Bearer {api_key}'
     }
     files = {
         'file': pdf_file
@@ -30,9 +30,7 @@ def ocr_mindee(pdf_file):
     if response.status_code == 200:
         return response.json()  # Retourne le résultat OCR
     else:
-        # Affichage détaillé de l'erreur avec texte complet
-        st.error(f"Erreur d'OCR avec l'API Mindee. Code HTTP: {response.status_code}")
-        st.error(f"Message d'erreur: {response.text}")
+        st.error("Erreur d'OCR avec l'API Mindee.")
         return None
 
 if uploaded_file:
