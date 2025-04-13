@@ -17,7 +17,7 @@ api_key = 'ad96a927d1867171fdd99f520ee2bd97'  # Ta clé API Mindee
 uploaded_file = st.file_uploader("Dépose ta facture PDF ici", type="pdf")
 
 def ocr_mindee(pdf_file):
-    url = "https://api.mindee.net/v1/products/receipt/v1/predict"
+    url = "https://api.mindee.net/v1/products/receipt/ocr/v1/predict"  # URL corrigée
     headers = {
         'Authorization': f'Bearer {api_key}'
     }
