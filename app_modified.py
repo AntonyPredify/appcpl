@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import requests
@@ -11,8 +10,8 @@ st.set_page_config(page_title="Saisie Factures Auto", layout="centered")
 st.title("📥 Saisie automatique des factures PDF avec OCR")
 st.markdown("Charge une facture PDF, extrait les données clés grâce à l'API Mindee, valide et exporte en écriture comptable Excel.")
 
-# Récupérer la clé API de Mindee (que tu auras récupérée sur le site de Mindee)
-api_key = 'b8626ea4fbde22f6dc8ecb6ba9fd3058'  # Remplacer par ta clé API Mindee
+# Récupérer la clé API de Mindee (déjà intégrée)
+api_key = 'ad96a927d1867171fdd99f520ee2bd97'  # Ta clé API Mindee
 
 # Upload du fichier
 uploaded_file = st.file_uploader("Dépose ta facture PDF ici", type="pdf")
@@ -30,7 +29,9 @@ def ocr_mindee(pdf_file):
     if response.status_code == 200:
         return response.json()  # Retourne le résultat OCR
     else:
-        st.error("Erreur d'OCR avec l'API Mindee.")
+        # Affichage détaillé de l'erreur avec texte complet
+        st.error(f"Erreur d'OCR avec l'API Mindee. Code HTTP: {response.status_code}")
+        st.error(f"Message d'erreur: {response.text}")
         return None
 
 if uploaded_file:
